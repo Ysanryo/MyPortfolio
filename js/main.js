@@ -1,10 +1,14 @@
-$(document).ready(function() {
-  $('a[href^="#"]').click(function() {
-    var speed = 500;
-    var href = $(this).attr("href");
-    var target = $(href == "#" || href == "" ? 'html' : href);
-    var position = target.offset().top;
-    $('html, body').animate({scrollTop: position}, speed, 'swing');
-    return false;
-  });
-});
+document.addEventListener("DOMContentLoaded", function() {
+	const e = document.querySelectorAll('a[href^="#"]');
+	for (let n = 0; n < e.length; n++)
+		e[n].addEventListener("click", function(e) {
+			e.preventDefault();
+			const n = this.getAttribute("href")
+			  , t = "#" === n || "" === n ? document.documentElement : document.querySelector(n)
+			  , o = t.offsetTop;
+			window.scrollTo({
+				top: o,
+				behavior: "smooth"
+		})
+	})
+})
